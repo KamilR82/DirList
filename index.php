@@ -6,7 +6,7 @@ function rglob(string $path = '.', bool $subdirs = false) // . = path to this fi
 	foreach(glob($path.'/*', GLOB_ONLYDIR) as $dir)
 	{
 		$basename = basename($dir);
-		if(!str_starts_with($basename, '@')) echo('<li><a href="'.$dir.'">'.$basename.'</a></li>'); // @ = system hidden folders on some NAS
+		if(!str_starts_with($basename, '@')) echo('<li><a href="'.$dir.'">'.$basename.DIRECTORY_SEPARATOR.'</a></li>'); // @ = system hidden folders on some NAS
 		if($subdirs) rglob($dir, $subdirs); // subdirs
 	}
 	echo '</ul>';
@@ -21,9 +21,10 @@ echo('<!DOCTYPE html>');
 echo('<html>');
 echo('<head>');
 echo('<style type="text/css">');
-echo('body {background-color: #ddd;}');
+echo('body {background-color: #ddd; color: #222;}');
 echo('a,a:link {color: #222; text-decoration: none;}');
-echo('@media (prefers-color-scheme: dark) {body {background: #222;} a,a:link {color: #ddd;}}');
+echo('ul {list-style: none;}');
+echo('@media (prefers-color-scheme: dark) {body {background: #222; color: #ddd;} a,a:link {color: #ddd;}}');
 echo('</style>');
 echo('<title>Dir List</title>');
 echo('<meta name="robots" content="noindex,nofollow,noarchive" />');
@@ -36,7 +37,10 @@ if($subdirs) echo('<a href="?subdirs=">Hide SubDirs</a>');
 else echo('<a href="?subdirs=true">Show SubDirs</a>');
 
 echo('<hr>');
+echo '<ul>';
+echo('<li>'.$_SERVER['SERVER_NAME'] . rtrim(dirname($_SERVER['SCRIPT_NAME']), DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR.'</li>');
 rglob(subdirs: $subdirs);
+echo '</ul>';
 echo('<hr>');
 
 echo('<a href="?phpinfo=true">Show phpinfo</a>');
