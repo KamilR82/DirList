@@ -12,7 +12,7 @@ function rglob(string $path = '.', bool $subdirs = false) // . = path to this fi
 	echo '</ul>';
 }
 
-if(filter_var($_GET['phpinfo'], FILTER_VALIDATE_BOOLEAN)) phpinfo();
+if(filter_var($_GET['phpinfo'] ?? false, FILTER_VALIDATE_BOOLEAN)) phpinfo();
 
 //HTML OUTPUT
 header('Content-Type: text/html; charset=utf-8');
@@ -30,7 +30,7 @@ echo('<meta name="robots" content="noindex,nofollow,noarchive" />');
 echo('</head>');
 echo('<body>');
 
-$subdirs = filter_var($_GET['subdirs'], FILTER_VALIDATE_BOOLEAN);
+$subdirs = filter_var($_GET['subdirs'] ?? false, FILTER_VALIDATE_BOOLEAN);
 
 if($subdirs) echo('<a href="?subdirs=">Hide SubDirs</a>');
 else echo('<a href="?subdirs=true">Show SubDirs</a>');
