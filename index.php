@@ -26,7 +26,7 @@ echo('a,a:link {color: #222; text-decoration: none;}');
 echo('ul {list-style: none;}');
 echo('@media (prefers-color-scheme: dark) {body {background: #222; color: #ddd;} a,a:link {color: #ddd;}}');
 echo('</style>');
-echo('<title>Dir List</title>');
+echo('<title>'.$_SERVER['SERVER_NAME'].'</title>');
 echo('<meta name="robots" content="noindex,nofollow,noarchive" />');
 echo('</head>');
 echo('<body>');
