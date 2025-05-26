@@ -49,4 +49,3 @@ echo('<a href="?phpinfo=true">Show phpinfo</a>');
 
 echo('</body>');
 echo('</html>');
-?>
