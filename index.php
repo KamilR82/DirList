@@ -16,6 +16,7 @@ if(filter_var($_GET['phpinfo'] ?? false, FILTER_VALIDATE_BOOLEAN)) phpinfo();
 
 //HTML OUTPUT
 header('Content-Type: text/html; charset=utf-8');
+header('X-Robots-Tag: none'); //equivalent to noindex, nofollow
 
 echo('<!DOCTYPE html>');
 echo('<html>');
@@ -27,7 +28,8 @@ echo('ul {list-style: none;}');
 echo('@media (prefers-color-scheme: dark) {body {background: #222; color: #ddd;} a,a:link {color: #ddd;}}');
 echo('</style>');
 echo('<title>'.$_SERVER['SERVER_NAME'].'</title>');
-echo('<meta name="robots" content="noindex,nofollow,noarchive" />');
+echo('<meta name="robots" content="noindex, nofollow, noarchive" />');
+echo('<meta name="viewport" content="width=device-width, initial-scale=1.0" />');
 echo('</head>');
 echo('<body>');
 
